@@ -4,6 +4,8 @@ const reset = document.getElementById("reset");
 const shortBreak = document.getElementById("shortBreak");
 const timer = document.getElementById("timer");
 const pomodoroTimer = document.getElementById("pomodoro");
+const minimizeBtn = document.getElementById("minimizeBtn");
+const closeBtn = document.getElementById("closeBtn");
 
 //Timer Logic
 let timeLeft = 25 * 60;
@@ -64,7 +66,7 @@ const shortTimer = () => {
     updateTimer();
 }
 
-//Event listener for each button
+//Starting the timer!
 start.addEventListener("click", () => {
     if(!isRunning){
         startTimer();
@@ -76,27 +78,36 @@ start.addEventListener("click", () => {
         isRunning = false;
     }
 });
-// reset.addEventListener("click", resetTimer);
+
+//Reseting the timer!
 reset.addEventListener("click", () => {
     start.textContent = "Start";
     isRunning = false;
     resetTimer();
 });
 
-//shortBreak.addEventListener("click", shortTimer);
-
+//Changing to short-break timer!
 shortBreak.addEventListener("click", () => {
     start.textContent = "Start";
     isRunning = false;
     shortTimer();
 });
 
-//pomodoroTimer.addEventListener("click", pomodoro);
-
+//Changing to the Pomodoro-timer!
 pomodoroTimer.addEventListener("click", () => {
     start.textContent = "Start";
     isRunning = false;
     pomodoro();
+})
+
+//Minimizing the application!
+minimizeBtn.addEventListener("click", () => {
+    window.windowAPI.minimize();
+})
+
+//Closing the application!
+closeBtn.addEventListener("click", () => {
+    window.windowAPI.close();
 })
 
 

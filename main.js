@@ -1,8 +1,10 @@
-const { app, BrowserWindow } = require("electron")
+const { app, BrowserWindow, ipcMain } = require("electron")
+
+let win;
 
 //Window function
 function createWindow(){
-    const win = new BrowserWindow({
+    win = new BrowserWindow({
         width: 500,
         height: 500,
         resizable: false,
@@ -11,7 +13,8 @@ function createWindow(){
         frame: false,
         transparent: false,
         webPreferences: {
-            contextIsolation: true
+            contextIsolation: true,
+            preload: __dirname + "/preload.js"
         }
     });
 
@@ -23,4 +26,13 @@ app.whenReady().then(createWindow);
 
 app.on("window-all-closed", () => {
     if (process.platform !== "darwin") app.quit();
+});
+
+//Window application alterations
+ipcMain.on("window:minimize", () => {
+    if (win) { win.minimize(); }
+});
+
+ipcMain.on("window:close", () => {
+    if (win) { win.close(); }
 });
