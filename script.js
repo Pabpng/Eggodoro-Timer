@@ -161,6 +161,9 @@ backWin.addEventListener("click", () => {
         hide(timerScreen);
         show(menuScreen);
         currentScreen = "menu";
+        isRunning = false;
+        resetTimer();
+        start.textContent = "Start";
     } else if (currentScreen === "settings") {
         hide(settingScreen);
         show(menuScreen);
@@ -217,37 +220,5 @@ musicBtn.addEventListener("click", () => {
     currentScreen = "music";
 
 })
-
-// backBtnMS.addEventListener("click", () => {
-//     hide(menuScreen);
-//     show(startScreen);
-// })
-
-// //Timer Screen 
-// backBtnOM.addEventListener("click", () => {
-//     hide(timerScreen);
-//     show(menuScreen);
-// })
-
-// //Setting Screen
-// backBtnSM.addEventListener("click", () => {
-//     hide(settingScreen);
-//     show(menuScreen);
-// })
-
-// //Gallery Screen
-// backBtnGM.addEventListener("click", () => {
-//     hide(galleryScreen);
-//     show(menuScreen);
-// })
-
-// //Music Screen
-// backBtnMM.addEventListener("click", () => {
-//     hide(musicScreen);
-//     show(menuScreen);
-// })
-
-
-
 
 //TODO: Reset the timer state, whenever the display changes from section to section
