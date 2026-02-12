@@ -6,10 +6,25 @@ const timer = document.getElementById("timer");
 const pomodoroTimer = document.getElementById("pomodoro");
 const minimizeBtn = document.getElementById("minimizeBtn");
 const closeBtn = document.getElementById("closeBtn");
+const backWin = document.getElementById("backWindow");
+
+//Starting Screen Buttons
 const playBtn = document.getElementById("play");
+
+//Menu Screen Buttons
+const orbTimerBtn = document.getElementById("orbTimer");
 const settingBtn = document.getElementById("settings");
-const backBtnTM = document.getElementById("backTimerToMenu");
+const galleryBtn = document.getElementById("gallery");
+const musicBtn = document.getElementById("music");
+const backBtnMS = document.getElementById("backMenuToStart");
+
+const backBtnOM = document.getElementById("backTimerToMenu");
 const backBtnSM = document.getElementById("backSettingToMenu");
+const backBtnGM = document.getElementById("backGalleryToMenu");
+const backBtnMM = document.getElementById("backMusicToMenu");
+
+//const backBtnTM = document.getElementById("backTimerToMenu");
+//const backBtnSM = document.getElementById("backSettingToMenu");
 
 
 //Timer Logic
@@ -118,9 +133,15 @@ closeBtn.addEventListener("click", () => {
 
 // TODO: Create a page selection function
 
+let currentScreen = "start";
+
+
+const startScreen = document.querySelector(".startScreen");
 const menuScreen = document.querySelector(".menuScreen");
 const timerScreen = document.querySelector(".timerScreen");
 const settingScreen = document.querySelector(".settingScreen");
+const galleryScreen = document.querySelector(".galleryScreen");
+const musicScreen = document.querySelector(".musicScreen");
 
 function show(screen) {
     screen.style.display = "flex";
@@ -130,22 +151,103 @@ function hide(screen) {
     screen.style.display = "none";
 }
 
+backWin.addEventListener("click", () => {
+    if(currentScreen === "menu"){
+        hide(menuScreen);
+        show(startScreen);
+        hide(backWin);
+        currentScreen = "start";
+    } else if (currentScreen === "timer") {
+        hide(timerScreen);
+        show(menuScreen);
+        currentScreen = "menu";
+    } else if (currentScreen === "settings") {
+        hide(settingScreen);
+        show(menuScreen);
+        currentScreen = "menu";
+    } else if (currentScreen === "gallery") {
+        hide(galleryScreen);
+        show(menuScreen);
+        currentScreen = "menu";
+    } else if (currentScreen === "music") {
+        hide(musicScreen);
+        show(menuScreen);
+        currentScreen = "menu";
+    } else {
+        return;
+    }
+});
+
+
+//Start Screen 
 playBtn.addEventListener("click", () => {
+    hide(startScreen);
+    show(menuScreen);
+    show(backWin);
+    currentScreen = "menu";
+})
+
+//Menu Screen
+orbTimerBtn.addEventListener("click", () => {
     hide(menuScreen);
     show(timerScreen);
+    show(backWin);
+    currentScreen = "timer";
 })
 
 settingBtn.addEventListener("click", () => {
     hide(menuScreen);
     show(settingScreen);
+    show(backWin);
+    currentScreen = "settings";
 })
 
-backBtnTM.addEventListener("click", () => {
-    hide(timerScreen);
-    show(menuScreen);
+galleryBtn.addEventListener("click", () => {
+    hide(menuScreen);
+    show(galleryScreen);
+    show(backWin);
+    currentScreen = "gallery";
+
 })
 
-backBtnSM.addEventListener("click", () => {
-    hide(settingScreen);
-    show(menuScreen);
+musicBtn.addEventListener("click", () => {
+    hide(menuScreen);
+    show(musicScreen);
+    show(backWin);
+    currentScreen = "music";
+
 })
+
+// backBtnMS.addEventListener("click", () => {
+//     hide(menuScreen);
+//     show(startScreen);
+// })
+
+// //Timer Screen 
+// backBtnOM.addEventListener("click", () => {
+//     hide(timerScreen);
+//     show(menuScreen);
+// })
+
+// //Setting Screen
+// backBtnSM.addEventListener("click", () => {
+//     hide(settingScreen);
+//     show(menuScreen);
+// })
+
+// //Gallery Screen
+// backBtnGM.addEventListener("click", () => {
+//     hide(galleryScreen);
+//     show(menuScreen);
+// })
+
+// //Music Screen
+// backBtnMM.addEventListener("click", () => {
+//     hide(musicScreen);
+//     show(menuScreen);
+// })
+
+
+
+
+//TODO: Reset the timer state, whenever the display changes from section to section

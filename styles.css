@@ -42,7 +42,29 @@ select {
 }
 
 .menuScreen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.galleryScreen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.musicScreen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.startScreen {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#backWindow {
+    display: none;
 }

@@ -11,20 +11,31 @@
     <div class="app">
 
         <div class="windowButtons">
+            <button id="backWindow">Back</button>
             <button id="minimizeBtn">Minimize</button>
             <button id="closeBtn">Close</button>
         </div>
 
-        <div class="menuScreen">
-            <div class="menuTitle">
-                Eggodoro-Timer
+        <div class="startScreen">
+            <div class="startTitle">
+                <p>The Orb-Odoro Timer</p>
             </div>
-            <div class="menuButtons">
+            <div class="startButtons">
                 <button id="play">Play</button>
-                <button id="settings">Settings</button>
             </div>
         </div>
 
+        <div class="menuScreen">
+            <div class="menuTitle">
+                <p>Menu</p>
+            </div>
+            <div class="menuButtons">
+                <button id="orbTimer">Orb-Timer</button>
+                <button id="settings">Settings</button>
+                <button id="gallery">Gallery</button>
+                <button id="music">Music</button>
+            </div>
+        </div>
 
         <div class="timerScreen">
             <div class="title">
@@ -38,7 +49,6 @@
                 <button id ="reset">Reset</button>
                 <button id="pomodoro">Pomodoro</button>
                 <button id="shortBreak">Short-Break</button>
-                <button id="backTimerToMenu">Back</button>
             </div>
         </div>
 
@@ -46,11 +56,22 @@
             <div class="title">
                 <p>Settings</p>
             </div>
-            <div class="settingButtons">
-                <button id="backSettingToMenu">Back</button>
-            </div>
+            <div class="settingButtons"></div>
         </div>
 
+        <div class="galleryScreen">
+            <div class="title">
+                <p>Gallery</p>
+            </div>
+            <div class="galleryButtons"></div>
+        </div>
+
+        <div class="musicScreen">
+            <div class="title">
+                <p>Music</p>
+            </div>
+            <div class="musicButtons"></div>
+        </div>
     </div>
 
     <script src="script.js"></Script>
