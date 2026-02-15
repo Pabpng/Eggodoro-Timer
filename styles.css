@@ -7,20 +7,20 @@ body {
     width: 100vw;
     height: 100vh;
 
-    background: transparent;
+    background: white;
     user-select: none;
     -webkit-app-region: drag;
-
-    background-image: url("assets/Orbodoro-StartUp.svg");
-
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .app {
     padding: 16px;
 }
+
+.frame {}
+
+.hotBar {}
+
+.content {}
 
 button,
 input,
@@ -34,6 +34,12 @@ select {
     display: flex;
     justify-content: flex-end;
 }
+
+#minimizeBtn {}
+
+#closeBtn {}
+
+#play {}
 
 #backWindow {
     display: none;

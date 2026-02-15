@@ -221,4 +221,22 @@ musicBtn.addEventListener("click", () => {
 
 })
 
-//TODO: Reset the timer state, whenever the display changes from section to section
+//Functionality and technical changes
+
+//TODO: Have ".screen" and ".screen.active" be universal
+//shared across all the screen intances, rather than being 
+//treated as indivdual screens (Helps with file size and computation)
+
+//TODO: Create sliders in the settings that adjusts the Timer,
+//The Rest time and the volume of the app.
+
+//TODO: Add music to the app and the slider in settings can adjust the volume.
+//Add a few selections of music in the music page.
+
+//Cosmetic
+
+//TODO: Figure out the html nested structure for what's best suited when 
+//Developing the application aesthetics and animation
+
+//TODO: Redesign the version app into something a bit more colourful
+//and intriguing 
