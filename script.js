@@ -1,9 +1,9 @@
 //Imports
 const start = document.getElementById("start");
 const reset = document.getElementById("reset");
-const shortBreak = document.getElementById("shortBreak");
+//const shortBreak = document.getElementById("shortBreak");
 const timer = document.getElementById("timer");
-const pomodoroTimer = document.getElementById("pomodoro");
+//const pomodoroTimer = document.getElementById("pomodoro");
 const minimizeBtn = document.getElementById("minimizeBtn");
 const closeBtn = document.getElementById("closeBtn");
 const backWin = document.getElementById("backWindow");
@@ -74,19 +74,19 @@ const resetTimer = () => {
     updateTimer();
 }
 
-const pomodoro = () => {
-    clearInterval(interval);
-    timeLeft = 25 * 60;
-    selectedTime = 25 * 60;
-    updateTimer();
-}
+// const pomodoro = () => {
+//     clearInterval(interval);
+//     timeLeft = 25 * 60;
+//     selectedTime = 25 * 60;
+//     updateTimer();
+// }
 
-const shortTimer = () => {
-    clearInterval(interval);
-    timeLeft = 5 * 60;
-    selectedTime = 5 * 60;
-    updateTimer();
-}
+// const shortTimer = () => {
+//     clearInterval(interval);
+//     timeLeft = 5 * 60;
+//     selectedTime = 5 * 60;
+//     updateTimer();
+// }
 
 const timerSlider = document.getElementById("timerSlider");
 
@@ -126,18 +126,18 @@ reset.addEventListener("click", () => {
 
 
 //Changing to short-break timer!
-shortBreak.addEventListener("click", () => {
-    start.textContent = "Start";
-    isRunning = false;
-    shortTimer();
-});
+// shortBreak.addEventListener("click", () => {
+//     start.textContent = "Start";
+//     isRunning = false;
+//     shortTimer();
+// });
 
 //Changing to the Pomodoro-timer!
-pomodoroTimer.addEventListener("click", () => {
-    start.textContent = "Start";
-    isRunning = false;
-    pomodoro();
-});
+// pomodoroTimer.addEventListener("click", () => {
+//     start.textContent = "Start";
+//     isRunning = false;
+//     pomodoro();
+// });
 
 //Minimizing the application!
 minimizeBtn.addEventListener("click", () => {
