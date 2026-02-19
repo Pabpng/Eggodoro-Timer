@@ -1,9 +1,7 @@
 //Imports
 const start = document.getElementById("start");
 const reset = document.getElementById("reset");
-//const shortBreak = document.getElementById("shortBreak");
 const timer = document.getElementById("timer");
-//const pomodoroTimer = document.getElementById("pomodoro");
 const minimizeBtn = document.getElementById("minimizeBtn");
 const closeBtn = document.getElementById("closeBtn");
 const backWin = document.getElementById("backWindow");
@@ -16,12 +14,16 @@ const orbTimerBtn = document.getElementById("orbTimer");
 const settingBtn = document.getElementById("settings");
 const galleryBtn = document.getElementById("gallery");
 const musicBtn = document.getElementById("music");
-const backBtnMS = document.getElementById("backMenuToStart");
 
+//Back Buttons
+const backBtnMS = document.getElementById("backMenuToStart");
 const backBtnOM = document.getElementById("backTimerToMenu");
 const backBtnSM = document.getElementById("backSettingToMenu");
 const backBtnGM = document.getElementById("backGalleryToMenu");
 const backBtnMM = document.getElementById("backMusicToMenu");
+
+//const pomodoroTimer = document.getElementById("pomodoro");
+//const shortBreak = document.getElementById("shortBreak");
 
 
 /* Start of Timer Logic 
@@ -34,6 +36,7 @@ let timeLeft = 25 * 60;
 let selectedTime = 25 * 60;
 let interval;
 let isRunning = false;
+let intermission = false;
 
 const updateTimer = () => {
     const minutes = Math.floor(timeLeft / 60);
@@ -89,8 +92,17 @@ const resetTimer = () => {
 // }
 
 const timerSlider = document.getElementById("timerSlider");
+const breakSlider = document.getElementById("breakSlider");
 
 timerSlider.addEventListener("input", (e) => {
+    let minutes = parseInt(e.target.value);
+    timeLeft = minutes * 60;
+    selectedTime = minutes * 60;
+    updateTimer();
+})
+
+//Rest period to automatically start once the main timer finishes
+breakSlider.addEventListener("input", (e) => {
     let minutes = parseInt(e.target.value);
     timeLeft = minutes * 60;
     selectedTime = minutes * 60;
