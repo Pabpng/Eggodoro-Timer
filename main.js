@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require("electron")
 
 let win;
 
-//Window function
+//Window function (Good pixel art scale is 364w x 256h)
 function createWindow(){
     win = new BrowserWindow({
         width: 420,

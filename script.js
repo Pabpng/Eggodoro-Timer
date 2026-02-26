@@ -1,26 +1,31 @@
-//Imports
+/* ======================= 
+   IMPORTS : BUTTONS
+======================== */
+
+//Timer Imports
 const start = document.getElementById("start");
 const reset = document.getElementById("reset");
 const timer = document.getElementById("timer");
+
+//Window Imports
 const minimizeBtn = document.getElementById("minimizeBtn");
 const closeBtn = document.getElementById("closeBtn");
 const backWin = document.getElementById("backWindow");
 
-//Starting Screen Buttons
+//Start Menu Imports
 const playBtn = document.getElementById("play");
 
-//Menu Screen Buttons
+//Main Menu Imports
 const orbTimerBtn = document.getElementById("orbTimer");
 const settingBtn = document.getElementById("settings");
 const galleryBtn = document.getElementById("gallery");
 const musicBtn = document.getElementById("music");
 
-//Back Buttons
-const backBtnMS = document.getElementById("backMenuToStart");
-const backBtnOM = document.getElementById("backTimerToMenu");
-const backBtnSM = document.getElementById("backSettingToMenu");
-const backBtnGM = document.getElementById("backGalleryToMenu");
-const backBtnMM = document.getElementById("backMusicToMenu");
+const startAudio = document.getElementById("startMusic");
+const timerAudio = document.getElementById("timerMusic");
+
+const timerSlider = document.getElementById("timerSlider");
+const breakSlider = document.getElementById("breakSlider");
 
 //const pomodoroTimer = document.getElementById("pomodoro");
 //const shortBreak = document.getElementById("shortBreak");
@@ -33,6 +38,7 @@ const backBtnMM = document.getElementById("backMusicToMenu");
 */
 
 let timeLeft = 25 * 60;
+let breakTime = 5 * 60;
 let selectedTime = 25 * 60;
 let interval;
 let isRunning = false;
@@ -77,22 +83,6 @@ const resetTimer = () => {
     updateTimer();
 }
 
-// const pomodoro = () => {
-//     clearInterval(interval);
-//     timeLeft = 25 * 60;
-//     selectedTime = 25 * 60;
-//     updateTimer();
-// }
-
-// const shortTimer = () => {
-//     clearInterval(interval);
-//     timeLeft = 5 * 60;
-//     selectedTime = 5 * 60;
-//     updateTimer();
-// }
-
-const timerSlider = document.getElementById("timerSlider");
-const breakSlider = document.getElementById("breakSlider");
 
 timerSlider.addEventListener("input", (e) => {
     let minutes = parseInt(e.target.value);
@@ -104,8 +94,7 @@ timerSlider.addEventListener("input", (e) => {
 //Rest period to automatically start once the main timer finishes
 breakSlider.addEventListener("input", (e) => {
     let minutes = parseInt(e.target.value);
-    timeLeft = minutes * 60;
-    selectedTime = minutes * 60;
+    breakTime = minutes * 60;
     updateTimer();
 })
 
@@ -122,10 +111,15 @@ start.addEventListener("click", () => {
         startTimer();
         start.textContent = "Pause";
         isRunning = true;
+        timerAudio.muted = false;
+        timerAudio.play()
     } else {
         pauseTimer();
         start.textContent = "Start";
         isRunning = false;
+        timerAudio.muted = true;
+        timerAudio.pause();
+        timerAudio.currentTime = 0;
     }
 });
 
@@ -136,20 +130,6 @@ reset.addEventListener("click", () => {
     resetTimer();
 });
 
-
-//Changing to short-break timer!
-// shortBreak.addEventListener("click", () => {
-//     start.textContent = "Start";
-//     isRunning = false;
-//     shortTimer();
-// });
-
-//Changing to the Pomodoro-timer!
-// pomodoroTimer.addEventListener("click", () => {
-//     start.textContent = "Start";
-//     isRunning = false;
-//     pomodoro();
-// });
 
 //Minimizing the application!
 minimizeBtn.addEventListener("click", () => {
@@ -187,6 +167,8 @@ backWin.addEventListener("click", () => {
         showScreen("startScreen");
         hide(backWin);
         currentScreen = "start";
+        startAudio.muted = false;
+        startAudio.play();
     } else if (currentScreen === "timer") {
         showScreen("menuScreen");
         currentScreen = "menu";
@@ -213,6 +195,9 @@ playBtn.addEventListener("click", () => {
     showScreen("menuScreen");
     show(backWin);
     currentScreen = "menu";
+    startAudio.muted = true;
+    startAudio.pause();
+    startAudio.currentTime = 0;
 })
 
 //Menu Screen
@@ -262,3 +247,11 @@ musicBtn.addEventListener("click", () => {
 //TODO: Redesign the version app into something a bit more colourful
 //and intriguing 
 
+
+//Fixes:
+
+//When the timer finishes, the rest timer should start straight away.
+
+//Create a separate rest timer, so when the timer is changed in settings it doesn't affect the main timer screen.
+
+//When the user wants to leave the timer page, send out a pop out prompt if they.

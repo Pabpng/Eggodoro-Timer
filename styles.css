@@ -6,8 +6,8 @@ body {
     margin: 0;
     width: 100vw;
     height: 100vh;
-
     background: white;
+
     user-select: none;
     -webkit-app-region: drag;
 }
@@ -34,7 +34,7 @@ select {
     width: 75%;
     margin-top: 50px;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
     margin: 10px 0;
 }
 
