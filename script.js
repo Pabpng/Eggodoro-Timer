@@ -1,42 +1,57 @@
 /* ======================= 
-   IMPORTS : BUTTONS
+   TIMER IMPORTS!
 ======================== */
-
-//Timer Imports
 const start = document.getElementById("start");
 const reset = document.getElementById("reset");
 const timer = document.getElementById("timer");
 
-//Window Imports
+
+
+/* ======================= 
+   WINDOW TAB IMPORTS!
+======================== */
 const minimizeBtn = document.getElementById("minimizeBtn");
 const closeBtn = document.getElementById("closeBtn");
 const backWin = document.getElementById("backWindow");
 
-//Start Menu Imports
+
+
+/* ======================= 
+   START MENU IMPORTS!
+======================== */
 const playBtn = document.getElementById("play");
 
-//Main Menu Imports
+
+
+/* ======================= 
+   MAIN MENU IMPORTS!
+======================== */
 const orbTimerBtn = document.getElementById("orbTimer");
 const settingBtn = document.getElementById("settings");
 const galleryBtn = document.getElementById("gallery");
 const musicBtn = document.getElementById("music");
 
+
+
+/* ======================= 
+   AUDIO IMPORTS!
+======================== */
 const startAudio = document.getElementById("startMusic");
 const timerAudio = document.getElementById("timerMusic");
 
+
+
+/* ======================= 
+   SETTINGS IMPORTS!
+======================== */
 const timerSlider = document.getElementById("timerSlider");
 const breakSlider = document.getElementById("breakSlider");
 
-//const pomodoroTimer = document.getElementById("pomodoro");
-//const shortBreak = document.getElementById("shortBreak");
 
 
-/* Start of Timer Logic 
--
--
--
-*/
-
+/* ======================= 
+   TIMER LOGIC STARTS!
+======================== */
 let timeLeft = 25 * 60;
 let breakTime = 5 * 60;
 let selectedTime = 25 * 60;
@@ -71,41 +86,15 @@ const startTimer = () => {
         }
     }, 1000)
 };
-
-//Pause Timer Function
-const pauseTimer = () => {
-    clearInterval(interval);
-}
-
-const resetTimer = () => {
-    clearInterval(interval);
-    timeLeft = selectedTime;
-    updateTimer();
-}
+/* ======================= 
+   TIMER LOGIC ENDS!
+======================== */
 
 
-timerSlider.addEventListener("input", (e) => {
-    let minutes = parseInt(e.target.value);
-    timeLeft = minutes * 60;
-    selectedTime = minutes * 60;
-    updateTimer();
-})
 
-//Rest period to automatically start once the main timer finishes
-breakSlider.addEventListener("input", (e) => {
-    let minutes = parseInt(e.target.value);
-    breakTime = minutes * 60;
-    updateTimer();
-})
-
-
-/* End of Timer Logic 
--
--
--
-*/
-
-//Starting the timer!
+/* ======================= 
+   START TIMER LOGIC!
+======================== */
 start.addEventListener("click", () => {
     if(!isRunning){
         startTimer();
@@ -123,25 +112,63 @@ start.addEventListener("click", () => {
     }
 });
 
-//Reseting the timer!
+
+
+/* ======================= 
+   PAUSE TIMER LOGIC!
+======================== */
+const pauseTimer = () => {
+    clearInterval(interval);
+}
+
+
+
+/* ======================= 
+   RESET TIMER LOGIC!
+======================== */
 reset.addEventListener("click", () => {
     start.textContent = "Start";
     isRunning = false;
     resetTimer();
 });
 
+const resetTimer = () => {
+    clearInterval(interval);
+    timeLeft = selectedTime;
+    updateTimer();
+}
 
-//Minimizing the application!
+
+
+/* ======================= 
+   TIMER SLIDERS!
+======================== */
+timerSlider.addEventListener("input", (e) => {
+    let minutes = parseInt(e.target.value);
+    timeLeft = minutes * 60;
+    selectedTime = minutes * 60;
+    updateTimer();
+})
+
+breakSlider.addEventListener("input", (e) => {
+    let minutes = parseInt(e.target.value);
+    breakTime = minutes * 60;
+    updateTimer();
+})
+
+
+
+/* ======================= 
+   WINDOW SCREEN LOGIC!
+======================== */
+
 minimizeBtn.addEventListener("click", () => {
     window.windowAPI.minimize();
 });
 
-//Closing the application!
 closeBtn.addEventListener("click", () => {
     window.windowAPI.close();
 });
-
-
 
 function show(button) {
     button.style.display = "flex";
@@ -150,7 +177,6 @@ function show(button) {
 function hide(button) {
     button.style.display = "none";
 }
-//New Screen Function
 
 function showScreen(name) {
     document.querySelectorAll(".screen").forEach(screen => {
@@ -160,6 +186,10 @@ function showScreen(name) {
     document.querySelector(`.${name}`).classList.add("active");
 }
 
+
+/* ======================= 
+   BACK BUTTON LOGIC!
+======================== */
 let currentScreen = "start";
 
 backWin.addEventListener("click", () => {
@@ -190,7 +220,9 @@ backWin.addEventListener("click", () => {
 });
 
 
-//Start Screen 
+/* ======================= 
+   PLAY BUTTON LOGIC!
+======================== */
 playBtn.addEventListener("click", () => {
     showScreen("menuScreen");
     show(backWin);
@@ -200,7 +232,11 @@ playBtn.addEventListener("click", () => {
     startAudio.currentTime = 0;
 })
 
-//Menu Screen
+
+
+/* ======================= 
+   MAIN MENU BUTTON LOGIC!
+======================== */
 orbTimerBtn.addEventListener("click", () => {
     showScreen("timerScreen");
     show(backWin);
@@ -225,33 +261,21 @@ musicBtn.addEventListener("click", () => {
     currentScreen = "music";
 })
 
-/* Slider Button Function 
--
--
--
+
+
+/* ======================= 
+   TODO LIST!
+======================== */
+/* 
+    1. When the "Study Timer" has completed - Switch to the "Rest Timer" logic and allow them to start the break manually.
+    2. If the attempt to leave the page before the timer has been completed, send a confirmation window before canceling progress.
+    3. Add music that loops for both the "Study Timer", "Rest Timer" and the "Main Menu" Screen.
+    4. Modify the "Music Volume Slider" in the settings page to have an affect on the music.
+    5. Add sfx to button presses.
+    6. Modify the "SFX Volume Slider" in the seetings page to have an affect on the sfx.
+
+    TO BE CONTINUED.
 */
-
-
-
-//TODO: Create sliders in the settings that adjusts the Timer,
-//The Rest time and the volume of the app.
-
-//TODO: Add music to the app and the slider in settings can adjust the volume.
-//Add a few selections of music in the music page.
-
-//Cosmetic
-
-//TODO: Figure out the html nested structure for what's best suited when 
-//Developing the application aesthetics and animation
-
-//TODO: Redesign the version app into something a bit more colourful
-//and intriguing 
-
-
-//Fixes:
-
-//When the timer finishes, the rest timer should start straight away.
-
-//Create a separate rest timer, so when the timer is changed in settings it doesn't affect the main timer screen.
-
-//When the user wants to leave the timer page, send out a pop out prompt if they.
+/* ======================= 
+   END OF TODO LIST!
+======================== */
