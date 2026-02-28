@@ -71,24 +71,6 @@ const updateTimer = () => {
     ${seconds.toString().padStart(2, "0")}`;
 };
 
-// const startTimer = () => {
-//     if(isRunning) return;
-
-//     isRunning = true;
-
-//     interval = setInterval(() => {
-//         timeLeft--;
-//         updateTimer();
-
-//         if(timeLeft < 0) {
-//             clearInterval(interval);
-//             alert("Good Work!");
-//             timeLeft = selectedPomodoroTime;
-//             updateTimer();
-//         }
-//     }, 1000)
-// };
-
 let timerStage = "Pomodoro"; // Pomodoro and Rest
 
 const startTimer = () => {
