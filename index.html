@@ -25,7 +25,7 @@
             <!-- Base of the application -->
             <div class="content">
                 <!-- Start Screen that acts as the introductory page for the application! -->
-                <div class=" screen startScreen active">
+                <div class="screen startScreen active">
                     <div class="startTitle">
                         <p>The Orbodoro Timer</p>
                     </div>
@@ -58,6 +58,17 @@
                         <button id ="reset">Cancel</button>
                     </div>
                 </div>
+                <!-- Timer Pop Up Overlay -->
+                <div class="timerPopUp" id="overlay">
+                        <div class="titleP">
+                            <p>Are you sure you want to quit?</p>
+                            <p>Leaving now will reset the Orbodoro Timer.</p>
+                        </div>
+                        <div class="buttons">
+                            <button id="leave">Leave</button>
+                            <button id="stay">Stay</button>
+                        </div>
+                    </div>
                 <!-- Settings Screen to allow the user to make altercations to the Timer, Rest Timer, Music volume and SFX Volume! -->
                 <div class="screen settingScreen">
                     <div class="title">

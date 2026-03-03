@@ -15,6 +15,13 @@ const minimizeBtn = document.getElementById("minimizeBtn");
 const closeBtn = document.getElementById("closeBtn");
 const backWin = document.getElementById("backWindow");
 
+/* ======================= 
+   WINDOW POP UP IMPORTS!
+======================== */
+const leaveTimerBtn = document.getElementById("leave");
+const stayTimerBtn = document.getElementById("stay");
+const timerOverlay = document.getElementById("overlay");
+
 
 
 /* ======================= 
@@ -205,6 +212,34 @@ function showScreen(name) {
     document.querySelector(`.${name}`).classList.add("active");
 }
 
+/* ======================= 
+   WINDOW POPUP LOGIC!
+======================== */
+function showPopUp(name) {
+    document.querySelector(`.${name}`).classList.add("pop");
+    timerOverlay.style.display="flex";
+}
+
+function hidePopUp(name) {
+    document.querySelector(`.${name}`).classList.remove("pop");
+    timerOverlay.style.display="none";
+}
+
+leaveTimerBtn.addEventListener("click", () => {
+    hidePopUp("timerPopUp");
+    showScreen("menuScreen");
+    currentScreen = "menu";
+    resetTimer();
+    start.textContent = "Start";
+});
+
+stayTimerBtn.addEventListener("click", () => {
+    hidePopUp("timerPopUp");
+    startTimer();
+    isRunning=true;
+});
+
+
 
 /* ======================= 
    BACK BUTTON LOGIC!
@@ -219,11 +254,18 @@ backWin.addEventListener("click", () => {
         startAudio.muted = false;
         startAudio.play();
     } else if (currentScreen === "timer") {
-        showScreen("menuScreen");
-        currentScreen = "menu";
-        isRunning = false;
-        resetTimer();
-        start.textContent = "Start";
+        // <!-- Overlay Pop Up when timer is running or timer is below selected times --> //
+        if(isRunning || timeLeft < selectedPomodoroTime || breakTime < selectedBreakTime){
+            showPopUp("timerPopUp");
+            pauseTimer();
+            isRunning = false;
+        } else {
+            showScreen("menuScreen");
+            currentScreen = "menu";
+            isRunning = false;
+            resetTimer();
+            start.textContent = "Start";
+        }
     } else if (currentScreen === "settings") {
         showScreen("menuScreen");
         currentScreen = "menu";
@@ -286,11 +328,11 @@ musicBtn.addEventListener("click", () => {
    TODO LIST!
 ======================== */
 /* 
-    1. When the "Study Timer" has completed - Switch to the "Rest Timer" logic and allow them to start the break manually.
-    2. If the attempt to leave the page before the timer has been completed, send a confirmation window before canceling progress.
+    1. When the "Study Timer" has completed - Switch to the "Rest Timer" logic and allow them to start the break manually. (Completed)
+    2. If the attempt to leave the page before the timer has been completed, send a confirmation window before canceling progress. (Completed)
     3. Add music that loops for both the "Study Timer", "Rest Timer" and the "Main Menu" Screen.
     4. Modify the "Music Volume Slider" in the settings page to have an affect on the music.
-    5. Add sfx to button presses.
+    5. Add sfx to button presses. 
     6. Modify the "SFX Volume Slider" in the seetings page to have an affect on the sfx.
 
     TO BE CONTINUED.
