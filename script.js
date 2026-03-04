@@ -407,7 +407,7 @@ musicBtn.addEventListener("click", () => {
     3. Add music that loops for both the "Study Timer", "Rest Timer" and the "Main Menu" Screen. (Completed)
     4. Modify the "Music Volume Slider" in the settings page to have an affect on the music, and make the music fade in and out when toggled.
     5. Add sfx to button presses. 
-    6. Modify the "SFX Volume Slider" in the seetings page to have an affect on the sfx.
+    6. Modify the "SFX Volume Slider" in the settings page to have an affect on the sfx.
 
     TO BE CONTINUED.
 */

@@ -9,5 +9,7 @@ carries on for. A successful download will result in new backgrounds, music
 and mini-mascots to customize your Orbodoro interface - But be careful though,
 constantly pausing the timer may result in no prize at all!
 
+Credits:
 
+Youtube - Pix : For supplying free non-copyrighted Music.
 
