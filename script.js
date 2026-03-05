@@ -42,11 +42,20 @@ const musicBtn = document.getElementById("music");
 
 
 /* ======================= 
-   AUDIO IMPORTS!
+   MUSIC IMPORTS!
 ======================== */
 const startAudio = document.getElementById("startMenuMusic");
 const timerAudio = document.getElementById("OrbodoroMusic");
 const restAudio = document.getElementById("restMusic");
+
+
+
+/* ======================= 
+   SFX IMPORTS!
+======================== */
+const clickSfx = document.getElementById("clickSfx");
+const forwardSfx = document.getElementById("forwardSfx");
+const backwardSfx = document.getElementById("backwardSfx");
 
 
 
@@ -115,7 +124,7 @@ const startTimer = () => {
                 resetAudio(restAudio);
             }
         }
-    }, 100)
+    }, 1000)
 };
 /* ======================= 
    TIMER LOGIC ENDS!
@@ -124,7 +133,7 @@ const startTimer = () => {
 
 
 /* ======================= 
-   AUDIO FUNCTION LOGIC!
+   AUDIO FUNCTIONS!
 ======================== */
 
 function muteAudio(name) {
@@ -153,8 +162,13 @@ function resetAudio(name) {
     audio.currentTime = 0;
 }
 
+function sfxAudio(name){
+    let audio = name;
+    audio.play();
+}
+
 /* ===========================
-   AUDIO FUNCTION LOGIC ENDS!
+   AUDIO FUNCTIONS ENDS!
 ==============================*/
 
 
@@ -165,6 +179,7 @@ function resetAudio(name) {
 
 start.addEventListener("click", () => {
     if(!isRunning){
+        sfxAudio(forwardSfx);
         startTimer();
         start.textContent = "Pause";
         isRunning = true;
@@ -175,6 +190,7 @@ start.addEventListener("click", () => {
             playAudio(restAudio);
         }
     } else {
+        sfxAudio(backwardSfx);
         pauseTimer();
         start.textContent = "Start";
         isRunning = false;
@@ -202,6 +218,7 @@ const pauseTimer = () => {
    RESET TIMER LOGIC!
 ======================== */
 reset.addEventListener("click", () => {
+    sfxAudio(clickSfx);
     start.textContent = "Start";
     isRunning = false;
     resetTimer();
@@ -240,6 +257,7 @@ breakSlider.addEventListener("input", (e) => {
 
 musicSlider.addEventListener("input", (e) => {
     let volume = parseFloat(e.target.value);
+    selectedMusicVolume = volume;
 
     startAudio.volume = volume;
     timerAudio.volume = volume;
@@ -248,9 +266,11 @@ musicSlider.addEventListener("input", (e) => {
 
 sfxSlider.addEventListener("input", (e) => {
     let volume = parseFloat(e.target.value);
+    selectedSfxVolume = volume;
+    clickSfx.volume = volume;
+    forwardSfx.volume = volume;
+    backwardSfx.volume = volume;
 })
-
-
 
 
 
@@ -296,6 +316,7 @@ function hidePopUp(name) {
 }
 
 leaveTimerBtn.addEventListener("click", () => {
+    sfxAudio(clickSfx);
     hidePopUp("timerPopUp");
     showScreen("menuScreen");
     currentScreen = "menu";
@@ -312,6 +333,7 @@ leaveTimerBtn.addEventListener("click", () => {
 });
 
 stayTimerBtn.addEventListener("click", () => {
+    sfxAudio(clickSfx);
     hidePopUp("timerPopUp");
     start.textContent = "start";
 });
@@ -324,6 +346,7 @@ stayTimerBtn.addEventListener("click", () => {
 let currentScreen = "start";
 
 backWin.addEventListener("click", () => {
+    sfxAudio(clickSfx);
     if(currentScreen === "menu"){
         showScreen("startScreen");
         hide(backWin);
@@ -376,6 +399,7 @@ backWin.addEventListener("click", () => {
    PLAY BUTTON LOGIC!
 ======================== */
 playBtn.addEventListener("click", () => {
+    sfxAudio(forwardSfx);
     showScreen("menuScreen");
     show(backWin);
     currentScreen = "menu";
@@ -387,6 +411,7 @@ playBtn.addEventListener("click", () => {
    MAIN MENU BUTTON LOGIC!
 ======================== */
 orbTimerBtn.addEventListener("click", () => {
+    sfxAudio(clickSfx);
     showScreen("timerScreen");
     show(backWin);
     currentScreen = "timer";
@@ -394,18 +419,21 @@ orbTimerBtn.addEventListener("click", () => {
 })
 
 settingBtn.addEventListener("click", () => {
+    sfxAudio(clickSfx);
     showScreen("settingScreen");
     show(backWin);
     currentScreen = "settings";
 })
 
 galleryBtn.addEventListener("click", () => {
+    sfxAudio(clickSfx);
     showScreen("galleryScreen");
     show(backWin);
     currentScreen = "gallery";
 })
 
 musicBtn.addEventListener("click", () => {
+    sfxAudio(clickSfx);
     showScreen("musicScreen");
     show(backWin);
     currentScreen = "music";
@@ -421,9 +449,9 @@ musicBtn.addEventListener("click", () => {
     2. If the attempt to leave the page before the timer has been completed, send a confirmation window before canceling progress. (Completed)
     3. Add music that loops for both the "Study Timer", "Rest Timer" and the "Main Menu" Screen. (Completed)
     4. Modify the "Music Volume Slider" in the settings page to have an affect on the music. (Completed)
-    5. Make the music fade in and out when toggled.
-    6. Add sfx to button presses. 
-    7. Modify the "SFX Volume Slider" in the settings page to have an affect on the sfx.
+    5. Add sfx to button presses. (Completed)
+    6. Modify the "SFX Volume Slider" in the settings page to have an affect on the sfx. (Completed)
+    7.Make the music fade in and out when toggled.
 
     TO BE CONTINUED.
 */
